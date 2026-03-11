@@ -1,8 +1,11 @@
 import { Hono } from "hono";
 import { registerFoodsRoute } from "./routes/foods.route";
+import { Bindings } from "./types";
 
-const app = new Hono();
+const app = new Hono<{ Bindings: Bindings }>();
 
 registerFoodsRoute(app);
 
-export default app;
+export default {
+  fetch: app.fetch,
+};
